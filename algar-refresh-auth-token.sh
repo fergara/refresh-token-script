@@ -17,9 +17,9 @@ RESPONSE_CODE=$(curl --header "Content-Type: application/json" \
   -s \
   --request POST \
   --data "$DATA" \
-  http://api-dev.algartelecom.com.br/oauth/grant-code)
+  http://api-dev.mycompany.com.br/oauth/grant-code)
 
-# echo "The JSON response from Sensedia: $RESPONSE_CODE"
+# echo "The JSON response from some API: $RESPONSE_CODE"
 IFS="="
 set $RESPONSE_CODE
 unset IFS
@@ -32,15 +32,13 @@ TOKEN=$(curl --header "Content-Type: application/x-www-form-urlencoded" \
   -s \
   --request POST \
   --data "grant_type=authorization_code&code=$CODE" \
-  http://api-dev.algartelecom.com.br/oauth/access-token)
+  http://api-dev.mycompany.com.br/oauth/access-token)
 
-echo "The Response from ALGAR OAth: $TOKEN"
-
-kubectl run microservices-db-ibm-mongodb-dev-client --rm --tty -i --image mongo --command -- mongo microservices-db-ibm-mongodb-dev:27017/admin -u mongo -p passw0rd
+echo "The Response from MYCOMPANY OAth: $TOKEN"
 
 {
     "contractId" : "1001",
-    "email" : "eu@algarbr.com.br",
+    "email" : "eu@mycompany.com.br",
     "user" : {
         "password" : "3772f026a57b"
     },
